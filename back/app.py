@@ -15,10 +15,13 @@ def getItems():
     if request.method == 'GET' and request.args.get('q'):
         try:
             search = request.args.get('q')
-            response = requests.get(f"https://api.mercadolibre.com/sites/MLA/search?q={search}").json()
+            items = requests.get(f"https://api.mercadolibre.com/sites/MLA/search?q={search}").json()
 
-            search = Search(response)
-            response = search.getResult()
+            search = Search(items)
+            category = search.getCategoryMostSearched()
+
+            categoryInfo = requests.get(f"https://api.mercadolibre.com/categories/{category}").json()
+            response = search.getResult(categoryInfo)
 
             return jsonify(response), 200
 

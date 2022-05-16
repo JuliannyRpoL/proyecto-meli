@@ -7,34 +7,20 @@ class Search():
         self.response = response
 
 
-    def getResult(self):
-        categoriesNames, categoryMostSearched = self.getCategories()
+    def getResult(self, categoryInfo):
         items = self.getItems()
+        categories = list(map(lambda category: category["name"], categoryInfo['path_from_root']))
 
         responseShowed = {
             'author': {
                 'name': 'Julianny',
                 'lastname': 'Restrepo Lopez'
             },
-            'categories': categoriesNames,
-            'category_selected': categoryMostSearched,
+            'categories': categories,
             'items': items
         }
 
         return responseShowed
-
-    def isCategory(self, filter):
-        return True if filter["id"] == 'category' else False
-
-    def getCategories(self):
-        categories = list(filter(self.isCategory, self.response["available_filters"]))
-        categoriesNames = list(map(lambda category: category["name"], categories[0]['values']))
-        categoryMostSearched = reduce(
-            lambda prevCategory, currentCategory: currentCategory if prevCategory['results'] < currentCategory['results'] else prevCategory,
-            categories[0]['values']
-        )['name']
-        
-        return categoriesNames, categoryMostSearched
 
     def getItems(self):
         results = self.response["results"]
@@ -57,4 +43,14 @@ class Search():
 
         return items
 
+    def isCategory(self, filter):
+        return True if filter["id"] == 'category' else False
+
+    def getCategoryMostSearched(self):
+        categories = list(filter(self.isCategory, self.response["available_filters"]))
+        categoryMostSearched = reduce(
+            lambda prevCategory, currentCategory: currentCategory if prevCategory['results'] < currentCategory['results'] else prevCategory,
+            categories[0]['values']
+        )['id']
         
+        return categoryMostSearched
