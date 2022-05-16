@@ -1,0 +1,11 @@
+@import "../../index.scss";
+
+.home {
+    height: calc(100vh - 56px);
+    width: 100%;
+
+    &__search {
+        width: 100%;
+    }
+
+}
