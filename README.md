@@ -5,9 +5,10 @@ En el siguiente repositorio encontrará un pequeño proyecto en el que se podrá
 
 ![image](https://user-images.githubusercontent.com/45438216/168727285-b006febd-fcf5-4361-bc05-b75537dad47b.png)
 ![image](https://user-images.githubusercontent.com/45438216/168727459-dc26366a-2aec-41bc-996e-719e3f7689b1.png)
-![image](https://user-images.githubusercontent.com/45438216/168727501-d200b890-c2c3-48e8-8626-b38d13787076.png)
+![image](https://user-images.githubusercontent.com/45438216/168728079-9ff1675c-05a1-4967-b7b3-c24d0247bf72.png)
 ![image](https://user-images.githubusercontent.com/45438216/168727600-047c4f81-dbf9-4a6d-bd73-050f5c85b7a1.png)
-![image](https://user-images.githubusercontent.com/45438216/168727564-a4040bb5-ce01-4b6b-b970-9b8abfb4fe71.png)
+![image](https://user-images.githubusercontent.com/45438216/168728040-4bf3b793-8942-4ecf-8916-60457c73e1b3.png)
+
 
 
 ## Estructura
