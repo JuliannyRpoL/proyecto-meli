@@ -1,5 +1,7 @@
+const { REACT_APP_API_URL } = process.env
+
 export function getItemsApi(search) {
-    const url = `http://localhost:5000/api/items?q=${search}`;
+    const url = `${REACT_APP_API_URL}/items?q=${search}`;
   
     const params = {
       method: "GET",
@@ -19,7 +21,7 @@ export function getItemsApi(search) {
 }
 
 export function getItemDetailsApi(id) {
-  const url = `http://localhost:5000/api/items/${id}`;
+  const url = `${REACT_APP_API_URL}/items/${id}`;
 
   const params = {
     method: "GET",
