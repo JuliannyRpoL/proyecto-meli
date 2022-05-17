@@ -8,8 +8,10 @@ export default function ItemDetails(props) {
     const { details } = props
     const [ showDescription, setShowDescription ] = useState(false);
 
-    const decimals = details.price.decimals.toString().split('.')[1]
+    const decimals = details.price.decimals.toFixed(2).toString().split('.')[1]
     const amount = details.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+    console.log(decimals, details.price.decimals.toFixed(2))
     
     return (
         <article className="item-details">
