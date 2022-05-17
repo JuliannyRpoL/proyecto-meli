@@ -25,9 +25,9 @@ export default function ItemDescription() {
                 <Search></Search>
             </div>
             <div className="item-description__body">
-                {/* <div className='results__body__breadcrumb'>
-                    {categories ? <Breadcrumb categories={categories}></Breadcrumb> : null }
-                </div> */}
+                <div className='results__body__breadcrumb'>
+                    {item ? <Breadcrumb categories={item.categories}></Breadcrumb> : null }
+                </div>
                 <div className='item-description__body__item'>
                     {item ? <ItemDetails details={item}></ItemDetails> : null}
                 </div>

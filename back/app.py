@@ -41,7 +41,9 @@ def getItemById(id):
         description = requests.get(f"https://api.mercadolibre.com/items/{id}/description").json()
 
         item = Item(item, description)
-        response = item.getItem()
+        categoryInfo = requests.get(f"https://api.mercadolibre.com/categories/{item.category}").json()
+
+        response = item.getItem(categoryInfo)
 
         return jsonify(response), 200
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import logo from "../../assets/img/logo.png";
 import searchImg from "../../assets/img/search.png";
@@ -8,7 +8,14 @@ import "./search.scss"
 
 export default function Search() {
     const [ search, setSearch ] = useState("");
+    const navigate = useNavigate();
 
+    function handleKeyDown(e) {
+        if (e.key === 'Enter') {
+            navigate(`/items?search=${search}`)
+        }
+    }
+    
     return (
         <nav className="search">
             <div className="search__content">
@@ -21,6 +28,7 @@ export default function Search() {
                         onChange={(e) => {
                             setSearch(e.target.value)
                         }}
+                        onKeyDown={(e) => handleKeyDown(e)}
                     ></input>
                     <Link 
                         className="search__content__input__btn"

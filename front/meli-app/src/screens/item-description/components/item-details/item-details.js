@@ -15,7 +15,7 @@ export default function ItemDetails(props) {
         <article className="item-details">
             <div className="item-details__general">
                 <figure className="item-details__general__img">
-                    <img src={details.picture[0]} alt="foto producto"></img>
+                    <img src={details.picture} alt="foto producto"></img>
                 </figure>
                 <div className="item-details__general__description">
                     <button 
