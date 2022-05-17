@@ -5,11 +5,11 @@ import { useLocation } from "react-router-dom";
 
 import Search from '../../components/search/search'
 import Item from './components/item/item'
+import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 import { getItemsApi } from "../../services/items.service";
 
 import "./results.scss"
-import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 export default function Results() {
     const [items, setItems] = useState(null);

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Search from '../../components/search/search'
 import ItemDetails from './components/item-details/item-details';
+import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 import { getItemDetailsApi } from "../../services/items.service";
 
@@ -24,6 +25,9 @@ export default function ItemDescription() {
                 <Search></Search>
             </div>
             <div className="item-description__body">
+                {/* <div className='results__body__breadcrumb'>
+                    {categories ? <Breadcrumb categories={categories}></Breadcrumb> : null }
+                </div> */}
                 <div className='item-description__body__item'>
                     {item ? <ItemDetails details={item}></ItemDetails> : null}
                 </div>

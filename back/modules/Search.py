@@ -43,7 +43,8 @@ class Search():
                 },
                 "picture": results[result]['thumbnail'],
                 "condition":  results[result]['condition'],
-                "free_shipping": results[result]['shipping']['free_shipping']
+                "free_shipping": results[result]['shipping']['free_shipping'],
+                "state": results[result]['address']['state_name']
             }
             items.append(item)
 

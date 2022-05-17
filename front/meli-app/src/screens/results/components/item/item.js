@@ -8,6 +8,7 @@ import "./item.scss"
 export default function Item(props) {
     const { data } = props;
     const navigate = useNavigate();
+    const amount = data.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
     
     return (
         <article className="item" onClick={() => {
@@ -19,7 +20,7 @@ export default function Item(props) {
                 </figure>
                 <div className="item__info__data">
                     <div className="item__info__data__price">
-                        <p>$ {data.price.amount}</p>
+                        <p>$ {amount}</p>
                         { data.free_shipping ? 
                             <figure className="item__info__data__price__shipping">
                                 <img src={envio} alt="envío"></img>
@@ -31,7 +32,7 @@ export default function Item(props) {
                 </div>
             </div>
             <div className="item__state">
-                <p className="item__state__data">{data.other}</p>
+                <p className="item__state__data">{data.state}</p>
             </div>
         </article>
     )
