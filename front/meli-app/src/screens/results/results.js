@@ -9,6 +9,7 @@ import Item from './components/item/item'
 import { getItemsApi } from "../../services/items.service";
 
 import "./results.scss"
+import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 export default function Results() {
     const [items, setItems] = useState(null);
@@ -16,7 +17,7 @@ export default function Results() {
 
     useEffect( () => {
         getItemsApi(search).then((res) => {
-            setItems(res['items'])
+            setItems(res)
         });
     }, [search])
     
@@ -26,8 +27,11 @@ export default function Results() {
                 <Search></Search>
             </div>
             <div className="results__body">
+                <div className='results__body__breadcrumb'>
+                    {items ? <Breadcrumb categories={items.categories}></Breadcrumb> : null }
+                </div>
                 <div className='results__body__items'>
-                    {items && items.map((item) => {
+                    {items && items.items.map((item) => {
                         return <Item data={item} key={item['id']}></Item>
                     })}
                 </div>

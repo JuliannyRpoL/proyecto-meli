@@ -1,0 +1,12 @@
+@import "../../index.scss";
+
+.breadcrumb {
+    &__category {
+        color: $color-font-light;
+
+        &--last {
+            font-weight: 700;
+        }
+    }
+
+}

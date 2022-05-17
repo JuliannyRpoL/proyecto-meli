@@ -9,11 +9,6 @@ import "./search.scss"
 export default function Search() {
     const [ search, setSearch ] = useState("");
 
-    // async function searchItem() {
-    //     const response = await getItemsApi(search);
-    //     navigate(`/items?search=${search}`);
-    // }
-    
     return (
         <nav className="search">
             <div className="search__content">
