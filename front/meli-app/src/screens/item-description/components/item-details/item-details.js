@@ -6,6 +6,9 @@ import "./item-details.scss"
 
 export default function ItemDetails(props) {
     const { details } = props
+
+    const decimals = details.price.decimals.toString().split('.')[1]
+    const amount = details.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
     
     return (
         <article className="item-details">
@@ -22,8 +25,8 @@ export default function ItemDetails(props) {
                 <p className="item-details__info__condition">{details.condition === 'new' ? 'Nuevo' : 'Usado'}</p>
                 <p className="item-details__info__title">{details.title}</p>
                 <div className="item-details__info__price">
-                    <p className="item-details__info__price__amount">$ {details.price.amount}</p>
-                    <p className="item-details__info__price__decimals">{details.price.decimals}</p>
+                    <span className="item-details__info__price__amount">$ {amount}</span>
+                    <span className="item-details__info__price__decimals">{decimals}</span>
                 </div>
                 <button className="item-details__info__btn">Comprar</button>
             </div>

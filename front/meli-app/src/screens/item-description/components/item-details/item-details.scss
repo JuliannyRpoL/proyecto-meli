@@ -21,7 +21,7 @@
 
         &__description {
             margin-top: 56px;
-
+            
             h4 {
                 margin: 0px 0px 32px;
                 font-size: 28px;
@@ -29,6 +29,7 @@
             }
 
             p {
+                margin: 0px;
                 font-size: 16px;
                 color:  $color-font-light;
             }
@@ -45,7 +46,7 @@
         }
         &__title {
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 700;
             margin: 0px;
 
         }
@@ -59,7 +60,7 @@
             }
             &__decimals {
                 font-size: 24px;
-                margin: 0px;
+                margin: 8px 0px 0px;
             }
         }
 
