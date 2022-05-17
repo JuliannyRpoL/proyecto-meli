@@ -18,15 +18,19 @@ def getItems():
             items = requests.get(f"https://api.mercadolibre.com/sites/MLA/search?q={search}").json()
 
             search = Search(items)
-            category = search.getCategoryMostSearched()
 
-            categoryInfo = requests.get(f"https://api.mercadolibre.com/categories/{category}").json()
-            response = search.getResult(categoryInfo)
+            if(len(search.category) == 0):
+                category = search.getCategoryMostSearched()
+
+                categoryInfo = requests.get(f"https://api.mercadolibre.com/categories/{category}").json()
+                response = search.getResult(categoryInfo)
+            else:
+                response = search.getResult(search.category[0])
 
             return jsonify(response), 200
 
-        except:
-            return jsonify("error consultando el elemento"), 400
+        except requests.exceptions.RequestException as e:  # This is the correct syntax
+            raise print(e)
     
     return jsonify("bad request, ingrese elemento de busqueda"), 400
 
@@ -42,7 +46,11 @@ def getItemById(id):
         return jsonify(response), 200
 
     except:
-        return jsonify("error consultando el item"), 400
+        error = {
+            'message': "item no encontrado",
+            'code': 400
+        }
+        return error, 400
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True, host="0.0.0.0")

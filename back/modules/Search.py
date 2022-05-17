@@ -5,11 +5,17 @@ class Search():
 
     def __init__(self, response):
         self.response = response
-
+        self.category = list(filter(self.isCategory, response["filters"]))
 
     def getResult(self, categoryInfo):
         items = self.getItems()
-        categories = list(map(lambda category: category["name"], categoryInfo['path_from_root']))
+
+        categories = []
+        if('error' not in categoryInfo):
+            if('values' not in categoryInfo):
+                categories = list(map(lambda category: category["name"], categoryInfo['path_from_root']))
+            else:
+                categories = list(map(lambda category: category["name"], categoryInfo['values'][0]['path_from_root']))
 
         responseShowed = {
             'author': {
@@ -48,9 +54,13 @@ class Search():
 
     def getCategoryMostSearched(self):
         categories = list(filter(self.isCategory, self.response["available_filters"]))
-        categoryMostSearched = reduce(
-            lambda prevCategory, currentCategory: currentCategory if prevCategory['results'] < currentCategory['results'] else prevCategory,
-            categories[0]['values']
-        )['id']
         
-        return categoryMostSearched
+        try:
+            categoryMostSearched = reduce(
+                lambda prevCategory, currentCategory: currentCategory if prevCategory['results'] < currentCategory['results'] else prevCategory,
+                categories[0]['values']
+            )['id']
+
+            return categoryMostSearched
+        except:
+            return ""       
