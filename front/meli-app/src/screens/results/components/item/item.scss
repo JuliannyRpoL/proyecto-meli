@@ -32,7 +32,7 @@
             max-width: 400px;
 
             &__price {
-                margin-top: 16px;
+                margin: 16px 0px;
                 display: flex;
                 align-items: center;
                 height: 32px;
@@ -56,7 +56,6 @@
 
             &__title {
                 font-size: 14px;
-                margin-top: 16px;
                 font-weight: 500;
             }
         }
@@ -87,13 +86,16 @@
             }
 
             &__data {
-                &__price p {
-                    font-size: 24px; 
+                &__price {
+                    margin-bottom: 32px;
+
+                    p {
+                        font-size: 24px; 
+                    }
                 }
-    
+
                 &__title {
-                    font-size: 18px;
-                    margin-top: 32px;
+                    font-size: 18px;     
                 }
             }
         }

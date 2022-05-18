@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 
 import Search from '../../components/search/search'
-import ItemDetails from './components/item-details/item-details';
 import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 import { getItemDetailsApi } from "../../services/items.service";
 
 import "./item-description.scss"
 
+const ItemDetailsComponent = React.lazy(() => import('./components/item-details/item-details'))
+
 export default function ItemDescription() {
     const [item, setItem] = useState(null);
     const { id } = useParams();
 
-    useEffect( () => {
+    useEffect(() => {
         getItemDetailsApi(id).then((res) => {
             setItem(res['item'])
         });
@@ -29,7 +30,7 @@ export default function ItemDescription() {
                     {item ? <Breadcrumb categories={item.categories}></Breadcrumb> : null }
                 </div>
                 <div className='item-description__body__item'>
-                    {item ? <ItemDetails details={item}></ItemDetails> : null}
+                    {item ? <ItemDetailsComponent details={item}></ItemDetailsComponent> : null}
                 </div>
             </main>
         </section>
