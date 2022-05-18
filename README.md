@@ -10,22 +10,25 @@ En el siguiente repositorio encontrará un pequeño proyecto en el que se podrá
 ![image](https://user-images.githubusercontent.com/45438216/168728040-4bf3b793-8942-4ecf-8916-60457c73e1b3.png)
 
 
-
 ## Frontend
-Para la implementación del frontend de la aplicación se utilizó React JS, Sass como preprocesador, BEM para el nombramiento de clases, Mobile First como práctica para el diseño responsive (la aplicación tiene algunos breakpoints, es responsive desde 375px), fetch para el consumo de APIs, etc.
+Para la implementación del frontend de la aplicación se utilizó React JS, Sass como preprocesador de estilos, BEM para el nombramiento de clases, Mobile First como práctica para el diseño responsive (la aplicación tiene algunos breakpoints, es responsive desde 375px), fetch para el consumo de APIs, etc.
 
 Como desiciones de diseño se definió:
 
 -  Llamado de servicios:
+
 realizar el consumo de los servicios directamente desde el componente de la vista ya que al redirigir a otra página, enviar elementos vía props no era viable y también debido al requerimiento "si se ingresa un id de producto debería ingresar directamente a la vista de detalle..."
 
 - Store managment:
+
 La comunicación de estados entre componentes fue vía props cuando pertenecían a la misma vista, esto ya que al ser una data que no era enviada a múltiples componentes, no afectaba en gran medida a la rerenderización de la página en caso de un cambio de estado. Por otro lado, para el proyecto se consideró el uso de redux, pero debido a que la recomendación de implementación de este patrón es para aplicaciones grandes y que su estado sea compartido en diferentes vistas o componentes, no agregaba gran valor de performance y mantenibilidad.
 
 - Accesibilidad:
+
 Para el tema de accesibilidad se utilizaron diferentes etiquetas acorde con la función que buscaba dicho contenido, tales como: header, nav, main, figure, button, input, etc. También se agregaron tabuladores en la vista de resultados para poder navegar en la página, atributos alt para las imágenes, atributos role y aria label para decribir el funcionamiento de algunos elementos, se agregó la detección de la tecla enter para realizar una busqueda o seleccionar un item tabulado, etc.
 
 - Performance:
+
 Para temas de performance se hizo uso de promesas en vez de async y await para no realizar una petición bloqueante, se agregó la propiedad key a los elementos que fueron mapeados en el html para optmizar el rerenderizado y ayudar al algoritmo de reconciliation y se importaron dos componentes con lazy loading en las vistas donde se hacen peticiones al back para que mientras espera el request pueda importarlos. Nota: se tuvo en cuenta el uso de componentes puros pero al analizar los posibles componentes que se podrían memoizar se notó que el componente padre que lo renderizaba en realidad no sufría cambios en un caso de posible rerendización, por lo cual no fue necesario implementarlo.
 
 - Estructuración de carpetas
@@ -42,7 +45,7 @@ Para temas de performance se hizo uso de promesas en vez de async y await para n
 Como otras consideraciones de UX que no fueron implementadas sería agregar un spinner al llamar las APIs para que el usuario tenga una retroalimentación de la acción.
 
 ## Backend
-Para el backend se utilizó Flask, una librería de python, esto debido a que en la parte backend es la librería con la que he realizado proyectos pequeños y tengo el conocimiento.
+Para el backend se utilizó Flask, una librería de python.
 
 ### Estructura
 
@@ -57,10 +60,11 @@ Como decisiones de implementación se realizaron los siguientes ajustes a la est
 1.   /api/items?q=:query
 
 Para la implementación de este endpoint de especifica el uso del endpoint de mercado libre de search y se comenta que en estos resultados sale la información de la categoría más visitada del item, pero al hacer una revisión de este criterio en algunos casos si devolvía la información pero en otros no, por lo cual procedí a hacer el siguiente flujo:
-	 - En caso de que se encuentre la información de la categoría en los filtros:
-	 	Se procede a construír la información de categories con la que suministra el valor.
-	 - En caso contrario:
-	 	Se realiza una búsqueda de los posibles filtros, se busca el filtro por categoría, se extrae la categoría con más búsquedas asociadas al item y luego se procede a consultar a otra API de mercado libre la información de la categoría.
+
+- En caso de que se encuentre la información de la categoría en los filtros:
+	Se procede a construír la información de categories con la que suministra el valor.
+- En caso contrario:
+	 Se realiza una búsqueda de los posibles filtros, se busca el filtro por categoría, se extrae la categoría con más búsquedas asociadas al item y luego se procede a consultar a otra API de mercado libre la información de la categoría.
 
 2. /api/items/:id
 	
