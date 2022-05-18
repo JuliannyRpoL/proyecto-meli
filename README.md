@@ -11,18 +11,26 @@ En el siguiente repositorio encontrará un pequeño proyecto en el que se podrá
 
 
 
-## Estructura
-- front: en este directorio encontrará la parte frontend desarrollada con la librería React JS
-- back: en este directorio encontrará la parte backend desarrollada con python y la librería Flask
-
-### Frontend
+## Frontend
 Para la implementación del frontend de la aplicación se utilizó React JS, Sass como preprocesador, BEM para el nombramiento de clases, Mobile First como práctica para el diseño responsive (la aplicación tiene algunos breakpoints, es responsive desde 375px), fetch para el consumo de APIs, etc.
 
-Como desiciones de diseño en cuanto al store managment no se optó por usar redux debido a que al ser un proyecto pequeño con pocos datos no aportaba gran diferencia (En proyectos grandes si se recomienda su uso o el de otra librería que comparta un estado global). También, el consumo de los servicios se realizaron directamente de la vista ya que al redirigir a otra página, enviar elementos vía props no era viable, igual también debido al requerimiento "si se ingresa un id de producto debería ingresar directamente a la vista de detalle...", hacer el llamado el componente inicial de la página era la mejor opción.  
+Como desiciones de diseño se definió:
 
-Como otras consideraciones de diseño que no fueron implementadas al ser un proyecto pequeño y por el tiempo serían: implementar un spinner al llamar las APIs para que el usuario tenga una retroalimentación de la acción y también, como mencioné anteriormente, manejar un estado, no solo para la comunicación entre componentes sino también para al devolverse de los detalles del item a los resultados de búsqueda, evitar volver a consumir la API.
+-  Llamado de servicios:
+realizar el consumo de los servicios directamente desde el componente de la vista ya que al redirigir a otra página, enviar elementos vía props no era viable y también debido al requerimiento "si se ingresa un id de producto debería ingresar directamente a la vista de detalle..."
 
-En cuanto a las decisiones de estructuración de archivos se tiene las siguientes carpetas:
+- Store managment:
+La comunicación de estados entre componentes fue vía props cuando pertenecían a la misma vista, esto ya que al ser una data que no era enviada a múltiples componentes, no afectaba en gran medida a la rerenderización de la página en caso de un cambio de estado. Por otro lado, para el proyecto se consideró el uso de redux, pero debido a que la recomendación de implementación de este patrón es para aplicaciones grandes y que su estado sea compartido en diferentes vistas o componentes, no agregaba gran valor de performance y mantenibilidad.
+
+- Accesibilidad
+Para el tema de accesibilidad se utilizaron diferentes etiquetas acorde con la función que buscaba dicho contenido, tales como: header, nav, main, figure, button, input, etc. También se agregaron tabuladores en la vista de resultados para poder navegar en la página, atributos alt para las imágenes, atributos role y aria label para decribir el funcionamiento de algunos elementos, se agregó la detección de la tecla enter para realizar una busqueda o seleccionar un item tabulado, etc.
+
+- Performance
+Para temas de performance se hizo uso de promesas en vez de async y await para no realizar una petición bloqueante, se agregó la propiedad key a los elementos que fueron mapeados en el html para optmizar el rerenderizado y ayudar al algoritmo de reconciliation y se importaron dos componentes con lazy loading en las vistas donde se hacen peticiones al back para que mientras espera el request pueda importarlos. Nota: se tuvo en cuenta el uso de componentes puros pero al analizar los posibles componentes que se podrían memoizar se notó que el componente padre que lo renderizaba en realidad no sufría cambios en un caso de posible rerendización, por lo cual no fue necesario implementarlo.
+
+- Estructuración de carpetas
+
+![image](https://user-images.githubusercontent.com/45438216/168955737-c5b3db30-9fa6-4380-9c0b-2d3c9dea12ae.png)
 
 - assets: para adjuntar elementos como imágenes, iconos, tipografía, etc.
 - components: para agrupar los componentes transversales que pueden ser usados en diferentes vistas.
@@ -31,15 +39,29 @@ En cuanto a las decisiones de estructuración de archivos se tiene las siguiente
 - services: para agrupar los diferentes servicios que consumirá la app.
 - styles: contiene los archivos de configuración del proyecto como colores, tipografía, mixins, etc.
 
-### Backend
-Para el backend se utilizó Flask, una librería de python, esto debido a que en la parte backend es la librería con la que he realizado proyectos pequeños y tengo el conocimiento; de igual forma node me parece más óptimo para este tipo de aplicaciones. 
+Como otras consideraciones de UX que no fueron implementadas sería agregar un spinner al llamar las APIs para que el usuario tenga una retroalimentación de la acción.
+
+## Backend
+Para el backend se utilizó Flask, una librería de python, esto debido a que en la parte backend es la librería con la que he realizado proyectos pequeños y tengo el conocimiento.
+
+### Estructura
+
+![image](https://user-images.githubusercontent.com/45438216/168962706-a60999a4-9de1-48c9-9048-f8ad9aa833c9.png)
 
 En la parte lógica de la aplicación se utilizaron HOF de python para el filtrado, mapeo o reducción de elementos (objetos, arrays, etc).
 
-Algo en lo que me gustaría detallar de desiciones de implementación fueron las siguientes:
+Como decisiones de implementación se realizaron los siguientes ajustes a la estructura de flujos o respuestas definidas:
 
-1.  Endpoint /api/items?q=:query
-	En el desarrollo de este endpoint hay dos flujos, uno en caso de que la api de mercadolibre de search retorne la información de la categoría y otro en caso de que no devuelva esta información. Esto lo hice porque a veces dependiendo de la búsqueda el elemento filters llega vacío; en este caso en el flujo alterno procedo a buscar la categoría más buscada con el nombre del item y luego consulto a otra api de mercado libre que me trae la información de dicha categoría.
+#### Endpoints
+
+1.   /api/items?q=:query
+
+	Para la implementación de este endpoint de especifica el uso del endpoint de mercado libre de search y se comenta que en estos resultados sale la información de la categoría más visitada del item, pero al hacer una revisión de este criterio en algunos casos si devolvía la información pero en otros no, por lo cual procedí a hacer el siguiente flujo:
+	 - En caso de que se encuentre la información de la categoría en los filtros:
+	 	Se procede a construír la información de categories con la que suministra el valor.
+	 - En caso contrario:
+	 	Se realiza una búsqueda de los posibles filtros, se busca el filtro por categoría, se extrae la categoría con más búsquedas asociadas al item y luego se procede a consultar a otra API de mercado libre la información de la categoría.
+
+2. /api/items/:id
 	
-2. Endpoint /api/items/:id
 	En este endopint agregué un nuevo campo a la respuesta llamado categories, esto ya que al tener el requerimiento de "si se ingresa un id de producto debería ingresar directamente a la vista de detalle...", la información de la categoría del item debe ser independiente de la categoría de los items en general.
