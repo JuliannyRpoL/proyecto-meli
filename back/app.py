@@ -2,8 +2,8 @@ from flask import Flask, jsonify, request
 import requests
 from flask_cors import CORS
 
-from modules.Search import Search
-from modules.Item import Item
+from models.Search import Search
+from models.Item import Item
 
 app = Flask(__name__)
 #CORS(app, resources={r"/*": {"origins": "*"}})
