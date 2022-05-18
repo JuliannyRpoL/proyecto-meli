@@ -25,15 +25,15 @@ export default function Results() {
     return (
         <section className="results">
             <div className="results__search">
-                <Search></Search>
+                <Search/>
             </div>
             <main className="results__body">
                 <div className='results__body__breadcrumb'>
-                    {items ? <Breadcrumb categories={items.categories}></Breadcrumb> : null }
+                    {items && <Breadcrumb categories={items.categories}/> }
                 </div>
                 <div className='results__body__items'>
                     {items && items.items.map((item) => {
-                        return <ItemComponent data={item} key={item['id']}></ItemComponent>
+                        return <ItemComponent data={item} key={item['id']}/>
                     })}
                 </div>
             </main>

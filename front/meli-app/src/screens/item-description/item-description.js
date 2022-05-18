@@ -23,14 +23,14 @@ export default function ItemDescription() {
     return (
         <section className="item-description">
             <div className="item-description__search">
-                <Search></Search>
+                <Search/>
             </div>
             <main className="item-description__body">
                 <div className='results__body__breadcrumb'>
-                    {item ? <Breadcrumb categories={item.categories}></Breadcrumb> : null }
+                    {item && <Breadcrumb categories={item.categories}/> }
                 </div>
                 <div className='item-description__body__item'>
-                    {item ? <ItemDetailsComponent details={item}></ItemDetailsComponent> : null}
+                    {item && <ItemDetailsComponent details={item}/>}
                 </div>
             </main>
         </section>

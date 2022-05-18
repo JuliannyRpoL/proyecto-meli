@@ -10,6 +10,10 @@ export default function ItemDetails(props) {
 
     const decimals = details.price.decimals.toFixed(2).toString().split('.')[1]
     const amount = details.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+    function handleShowDescription() {
+        setShowDescription(!showDescription)
+    }
     
     return (
         <div className="item-details">
@@ -20,7 +24,7 @@ export default function ItemDetails(props) {
                 <div className="item-details__general__description">
                     <button 
                         className="item-details__general__description__btn-show"
-                        onClick={() => setShowDescription(!showDescription)}
+                        onClick={handleShowDescription}
                     >
                         {!showDescription ? 'Ver descripción' : 'Ocultar descripción'}
                     </button>
@@ -28,8 +32,8 @@ export default function ItemDetails(props) {
                         showDescription ? "item-details__general__description__info" :
                         "item-details__general__description__info--hide"
                     }>
-                        <h4>Descripción del producto</h4>
-                        <p>{details.description}</p>
+                        <p className="item-details__general__description__info__title">Descripción del producto</p>
+                        <p className="item-details__general__description__info__desc">{details.description}</p>
                     </aside>                   
                 </div>
             </div>

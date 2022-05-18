@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <section className="home">
             <div className="home__search">
-                <Search></Search>
+                <Search/>
             </div>
         </section>
     )

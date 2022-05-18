@@ -12,15 +12,17 @@ export default function Item(props) {
 
     function handleKeyDown(e) {
         if (e.key === 'Enter') {
-            navigate(`/items/${data.id}`)
+            redirectToDetails()
         }
+    }
+
+    function redirectToDetails() {
+        navigate(`/items/${data.id}`);
     }
     
     return (
         <div className="item" tabIndex={0} 
-            onClick={() => {
-                navigate(`/items/${data.id}`);
-            }}
+            onClick={redirectToDetails}
             onKeyDown={(e) => handleKeyDown(e)}
             aria-label="Ver producto"
         >
