@@ -9,11 +9,21 @@ export default function Item(props) {
     const { data } = props;
     const navigate = useNavigate();
     const amount = data.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+    function handleKeyDown(e) {
+        if (e.key === 'Enter') {
+            navigate(`/items/${data.id}`)
+        }
+    }
     
     return (
-        <article className="item" onClick={() => {
-            navigate(`/items/${data.id}`);
-        }}>
+        <div className="item" tabIndex={0} 
+            onClick={() => {
+                navigate(`/items/${data.id}`);
+            }}
+            onKeyDown={(e) => handleKeyDown(e)}
+            aria-label="Ver producto"
+        >
             <div className="item__info">
                 <figure className="item__info__img">
                     <img src={data.picture} alt="imagen producto"></img>
@@ -27,13 +37,13 @@ export default function Item(props) {
                             </figure> : null   
                         }                    
                     </div>
-                    <p className="item__info__data__title">
-                        {data.title} {data.condition === 'new' ? 'Nuevo' : 'Usado'}</p>
+                    <strong className="item__info__data__title">
+                        {data.title} {data.condition === 'new' ? 'Nuevo' : 'Usado'}</strong>
                 </div>
             </div>
             <div className="item__state">
                 <p className="item__state__data">{data.state}</p>
             </div>
-        </article>
+        </div>
     )
 }

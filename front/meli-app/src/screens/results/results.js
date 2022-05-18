@@ -26,7 +26,7 @@ export default function Results() {
             <div className="results__search">
                 <Search></Search>
             </div>
-            <div className="results__body">
+            <main className="results__body">
                 <div className='results__body__breadcrumb'>
                     {items ? <Breadcrumb categories={items.categories}></Breadcrumb> : null }
                 </div>
@@ -35,7 +35,7 @@ export default function Results() {
                         return <Item data={item} key={item['id']}></Item>
                     })}
                 </div>
-            </div>
+            </main>
         </section>
     )
 }

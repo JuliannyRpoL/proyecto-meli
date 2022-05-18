@@ -19,10 +19,10 @@ export default function Search() {
     return (
         <header className="search">
             <div className="search__content">
-                <Link className="search__content__logo" to="/">
+                <Link className="search__content__logo" to="/" aria-label='ir a home'>
                     <img src={logo} alt="logo"></img>
                 </Link>
-                <div className="search__content__input">
+                <div className="search__content__input" role="search">
                     <input 
                         placeholder='Nunca dejes de buscar'
                         onChange={(e) => {
@@ -33,6 +33,7 @@ export default function Search() {
                     <Link 
                         className="search__content__input__btn"
                         to={`/items?search=${search}`}
+                        aria-label="Buscar"
                     >
                         <figure className="search__content__input__btn__img">
                             <img src={searchImg} alt="buscar"></img>

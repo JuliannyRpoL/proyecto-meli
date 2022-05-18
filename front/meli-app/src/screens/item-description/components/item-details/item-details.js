@@ -12,7 +12,7 @@ export default function ItemDetails(props) {
     const amount = details.price.amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
     
     return (
-        <article className="item-details">
+        <div className="item-details">
             <div className="item-details__general">
                 <figure className="item-details__general__img">
                     <img src={details.picture} alt="foto producto"></img>
@@ -24,24 +24,24 @@ export default function ItemDetails(props) {
                     >
                         {!showDescription ? 'Ver descripción' : 'Ocultar descripción'}
                     </button>
-                    <article className={
+                    <aside className={
                         showDescription ? "item-details__general__description__info" :
                         "item-details__general__description__info--hide"
                     }>
                         <h4>Descripción del producto</h4>
                         <p>{details.description}</p>
-                    </article>                   
+                    </aside>                   
                 </div>
             </div>
             <div className="item-details__info">
                 <p className="item-details__info__condition">{details.condition === 'new' ? 'Nuevo' : 'Usado'} - {details.sold_quantity} vendidos</p>
-                <p className="item-details__info__title">{details.title}</p>
+                <strong className="item-details__info__title">{details.title}</strong>
                 <div className="item-details__info__price">
                     <span className="item-details__info__price__amount">$ {amount}</span>
                     <span className="item-details__info__price__decimals">{decimals}</span>
                 </div>
                 <button className="item-details__info__btn">Comprar</button>
             </div>
-        </article>
+        </div>
     )
 }
