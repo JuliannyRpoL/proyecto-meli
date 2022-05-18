@@ -22,10 +22,10 @@ realizar el consumo de los servicios directamente desde el componente de la vist
 - Store managment:
 La comunicación de estados entre componentes fue vía props cuando pertenecían a la misma vista, esto ya que al ser una data que no era enviada a múltiples componentes, no afectaba en gran medida a la rerenderización de la página en caso de un cambio de estado. Por otro lado, para el proyecto se consideró el uso de redux, pero debido a que la recomendación de implementación de este patrón es para aplicaciones grandes y que su estado sea compartido en diferentes vistas o componentes, no agregaba gran valor de performance y mantenibilidad.
 
-- Accesibilidad
+- Accesibilidad:
 Para el tema de accesibilidad se utilizaron diferentes etiquetas acorde con la función que buscaba dicho contenido, tales como: header, nav, main, figure, button, input, etc. También se agregaron tabuladores en la vista de resultados para poder navegar en la página, atributos alt para las imágenes, atributos role y aria label para decribir el funcionamiento de algunos elementos, se agregó la detección de la tecla enter para realizar una busqueda o seleccionar un item tabulado, etc.
 
-- Performance
+- Performance:
 Para temas de performance se hizo uso de promesas en vez de async y await para no realizar una petición bloqueante, se agregó la propiedad key a los elementos que fueron mapeados en el html para optmizar el rerenderizado y ayudar al algoritmo de reconciliation y se importaron dos componentes con lazy loading en las vistas donde se hacen peticiones al back para que mientras espera el request pueda importarlos. Nota: se tuvo en cuenta el uso de componentes puros pero al analizar los posibles componentes que se podrían memoizar se notó que el componente padre que lo renderizaba en realidad no sufría cambios en un caso de posible rerendización, por lo cual no fue necesario implementarlo.
 
 - Estructuración de carpetas
