@@ -56,7 +56,7 @@ Como decisiones de implementación se realizaron los siguientes ajustes a la est
 
 1.   /api/items?q=:query
 
-	Para la implementación de este endpoint de especifica el uso del endpoint de mercado libre de search y se comenta que en estos resultados sale la información de la categoría más visitada del item, pero al hacer una revisión de este criterio en algunos casos si devolvía la información pero en otros no, por lo cual procedí a hacer el siguiente flujo:
+Para la implementación de este endpoint de especifica el uso del endpoint de mercado libre de search y se comenta que en estos resultados sale la información de la categoría más visitada del item, pero al hacer una revisión de este criterio en algunos casos si devolvía la información pero en otros no, por lo cual procedí a hacer el siguiente flujo:
 	 - En caso de que se encuentre la información de la categoría en los filtros:
 	 	Se procede a construír la información de categories con la que suministra el valor.
 	 - En caso contrario:
@@ -64,4 +64,4 @@ Como decisiones de implementación se realizaron los siguientes ajustes a la est
 
 2. /api/items/:id
 	
-	En este endopint agregué un nuevo campo a la respuesta llamado categories, esto ya que al tener el requerimiento de "si se ingresa un id de producto debería ingresar directamente a la vista de detalle...", la información de la categoría del item debe ser independiente de la categoría de los items en general.
+En este endopint agregué un nuevo campo a la respuesta llamado categories, esto ya que al tener el requerimiento de "si se ingresa un id de producto debería ingresar directamente a la vista de detalle...", la información de la categoría del item debe ser independiente de la categoría de los items en general.
