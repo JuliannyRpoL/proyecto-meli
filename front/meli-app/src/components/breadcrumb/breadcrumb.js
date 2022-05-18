@@ -1,8 +1,4 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom"
-
-import logo from "../../assets/img/logo.png";
-import searchImg from "../../assets/img/search.png";
+import React from 'react'
 
 import "./breadcrumb.scss"
 

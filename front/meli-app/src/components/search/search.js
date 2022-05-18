@@ -17,7 +17,7 @@ export default function Search() {
     }
     
     return (
-        <nav className="search">
+        <header className="search">
             <div className="search__content">
                 <Link className="search__content__logo" to="/">
                     <img src={logo} alt="logo"></img>
@@ -40,6 +40,6 @@ export default function Search() {
                     </Link>
                 </div>
             </div>
-        </nav>
+        </header>
     )
 }
