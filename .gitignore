@@ -2,6 +2,7 @@
 /front/meli-app/node_modules
 /front/meli-app/.pnp
 /front/meli-app/.env
+/back-node/node_modules
 .pnp.js
 
 # testing
