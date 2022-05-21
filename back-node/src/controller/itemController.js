@@ -2,15 +2,15 @@ import axios from 'axios';
 import asyncHandler from 'express-async-handler';
 
 import { getCategoryInfo } from './categoryController.js';
+import { URL_MELI } from '../../config/config.js'
 import SearchItemsLayer from '../layer-application/searchItemsLayer.js'
 import ItemLayer from '../layer-application/itemLayer.js'
-
 
 const getSearchedItems = asyncHandler(async(req, res) => {
     const query = req.query.q;
 
     if(query) {
-        const url = `https://api.mercadolibre.com/sites/MLA/search?q=${query}`;
+        const url = `${URL_MELI}/sites/MLA/search?q=${query}`;
 
         axios.get(url)
             .then(async response => {
@@ -40,8 +40,8 @@ const getSearchedItems = asyncHandler(async(req, res) => {
 const getItemDetails = asyncHandler(async(req, res) => {
     const id = req.params.id;
     if(id) {
-        const urlItem = `https://api.mercadolibre.com/items/${id}`;
-        const urlDescription = `https://api.mercadolibre.com/items/${id}/description`;
+        const urlItem = `${URL_MELI}/items/${id}`;
+        const urlDescription = `${URL_MELI}/items/${id}/description`;
 
         const item = await (await axios.get(urlItem)).data;
         const description = await (await axios.get(urlDescription)).data;

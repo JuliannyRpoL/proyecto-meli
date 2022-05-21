@@ -1,13 +1,9 @@
 import express from 'express';
 
-import dotenv from 'dotenv';
 import itemRoutes from './src/routes/itemRoutes.js'
- 
-dotenv.config()
+import {PORT} from './config/config.js'
 
 const app = express();
-
-const PORT = process.env.PORT || 5000;
 
 app.use('/api/items/', itemRoutes)
 
