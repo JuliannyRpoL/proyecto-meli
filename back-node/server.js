@@ -8,7 +8,7 @@ const app = express();
 app.use('/api/items/', itemRoutes)
 
 app.listen(PORT, () => {
-    console.log(`Server running and listening on PORT ${PORT}`.blue)
+    console.log(`Server running and listening on PORT ${PORT}`)
   })
 
 app.get('/', (req, res) => {
