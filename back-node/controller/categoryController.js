@@ -1,18 +1,28 @@
-import asyncHandler from 'express-async-handler'
+import axios from 'axios';
 
+const getCategoryInfo = async function (id) {
+    if(id) {
+        // try {
+            const url = `https://api.mercadolibre.com/categories/${id}`;
+            let data;
 
-const getCategoryInfo = asyncHandler(async(req, res) => {
+            await axios.get(url)
+                .then(response => {
+                    data = response.data
+                })
+                .catch(error => {
+                    console.log("ERROR", error);
+                });
 
-    console.log(req)
+            const categories = data.path_from_root.map((category) => category["name"])
 
-    // const book = await Book.findById(req.params.id)
+            return categories 
+        // } catch (e) {
 
-    // if(book){
-    //     res.json(book)
-    // } else{
-    //     res.status(404).json({message: 'Book Not Found'})
-    // }
-
-})
+        // }
+    } else {
+        return {message: 'bad request, ingrese id de la categoria'}
+    }
+}
 
 export { getCategoryInfo }
