@@ -6,6 +6,10 @@
     flex-direction: column;
     border-bottom: 1px $background solid;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     &__info {
         display: flex;
         width: 100%;
