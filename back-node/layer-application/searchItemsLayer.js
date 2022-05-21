@@ -9,10 +9,10 @@ export default class SearchItemsLayer {
         const items = this.getItems()
 
         let categories = []
-        if(categoryInfo.values){
-            categories = categoryInfo.values[0].path_from_root.map((category) => category.name)
-        } else {
+        if(Array.isArray(categoryInfo)){
             categories = categoryInfo
+        } else {
+            categories = categoryInfo.values[0].path_from_root.map((category) => category.name)
         }
             
         const responseShowed = {
@@ -61,14 +61,14 @@ export default class SearchItemsLayer {
         
         try {
             const categoryMostSearched = categories[0].values.reduce((prevCategory, currentCategory) => {
-                if( currentCategory > prevCategory.results ) {
+                if( currentCategory.results > prevCategory.results ) {
                     return currentCategory
                 } else {
                     return prevCategory
                 }
             })
 
-            return categoryMostSearched;
+            return categoryMostSearched.id;
         } catch {
             return ""
         }

@@ -3,7 +3,7 @@ export default class ItemLayer {
     constructor() { }
 
     getResult(item, description, category){
-        const price = item.price;
+        const price = item.price.toString().split('.');
         const amount = parseInt(price[0])
         const decimals = parseFloat(`0.${price[1]}`)
 
