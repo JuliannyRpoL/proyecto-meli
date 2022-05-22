@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { URL_MELI } from '../../config/config.js'
+import { URL_MELI } from '../config/config.js'
 
 import ItemModel from '../models/item.model.js'
 import SearchItemsModel from '../models/searchItems.model.js'
