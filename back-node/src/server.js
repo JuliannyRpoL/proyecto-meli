@@ -1,7 +1,7 @@
 import express from 'express';
 
-import itemRoutes from './src/routes/itemRoutes.js'
-import {PORT} from './config/config.js'
+import itemRoutes from './routes/itemRoutes.js'
+import {PORT} from '../config/config.js'
 
 const app = express();
 

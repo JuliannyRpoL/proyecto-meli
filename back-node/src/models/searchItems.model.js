@@ -1,4 +1,4 @@
-export default class SearchItemsLayer {
+export default class SearchItemsModel {
 
     constructor(response) {
         this.response = response;

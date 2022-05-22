@@ -1,10 +1,11 @@
 import express from 'express';
-import { getSearchedItems, getItemDetails } from '../controller/itemController.js';
+import { getSearchedItems, getItemDetails } from '../controller/item.controller.js';
+import { checkGetItemDetails, checkSearchedItems } from '../middleware/itemMiddleware.js'
 
 const router = express.Router()
 
-router.route('/').get(getSearchedItems)
+router.get('/', checkSearchedItems, getSearchedItems);
 
-router.route('/:id').get(getItemDetails)
+router.get('/:id', checkGetItemDetails, getItemDetails)
 
 export default router

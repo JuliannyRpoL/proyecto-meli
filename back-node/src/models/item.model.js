@@ -1,4 +1,4 @@
-export default class ItemLayer {
+export default class ItemModel {
 
     constructor() { }
 
