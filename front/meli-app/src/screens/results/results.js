@@ -14,11 +14,13 @@ const ItemComponent = React.lazy(() => import('./components/item/item'))
 
 export default function Results() {
     const [items, setItems] = useState(null);
-    const search = new URLSearchParams(useLocation().search).get("search");
+    let search = new URLSearchParams(useLocation().search).get("search");
 
     useEffect(() => {
         getItemsApi(search).then((res) => {
-            setItems(res)
+            if(res.items) {
+                setItems(res)
+            }
         });
     }, [search])
     
