@@ -45,17 +45,13 @@ Para temas de performance se hizo uso de promesas en vez de async y await para n
 Como otras consideraciones de UX que no fueron implementadas sería agregar un spinner al llamar las APIs para que el usuario tenga una retroalimentación de la acción.
 
 ## Backend
-Para el backend se utilizó Flask, una librería de python.
-
-### Estructura
-
-![image](https://user-images.githubusercontent.com/45438216/168962706-a60999a4-9de1-48c9-9048-f8ad9aa833c9.png)
+Para el backend se desarrolló una API en node JS y express.
 
 En la parte lógica de la aplicación se utilizaron HOF de python para el filtrado, mapeo o reducción de elementos (objetos, arrays, etc).
 
-Como decisiones de implementación se realizaron los siguientes ajustes a la estructura de flujos o respuestas definidas:
+Como decisiones de implementación se realizaron los siguientes ajustes a la estructura de flujos o respuestas definidas y se definió la siguiente estructura de carpetas:
 
-#### Endpoints
+#### Modificación de endpoints
 
 1.   /api/items?q=:query
 
@@ -65,7 +61,21 @@ Para la implementación de este endpoint de especifica el uso del endpoint de me
 	Se procede a construír la información de categories con la que suministra el valor.
 - En caso contrario:
 	 Se realiza una búsqueda de los posibles filtros, se busca el filtro por categoría, se extrae la categoría con más búsquedas asociadas al item y luego se procede a consultar a otra API de mercado libre la información de la categoría.
+	 
+También, a este endpoint se agrega el valor "state" debido a que en los diseños se podía observar que faltaba este valor.
 
 2. /api/items/:id
 	
 En este endopint agregué un nuevo campo a la respuesta llamado categories, esto ya que al tener el requerimiento de "si se ingresa un id de producto debería ingresar directamente a la vista de detalle...", la información de la categoría del item debe ser independiente de la categoría de los items en general.
+
+### Estructura
+
+![image](https://user-images.githubusercontent.com/45438216/169841455-b00b6f90-16cd-4dbb-8233-3f7d216baece.png)
+
+- Adapter: en este folder se encuentran los adaptadores de un servicio los cuales son llamados desde los controladores.
+- config: folder para ingresar las configuraciónes del proyecto. Actualmente se encuentra el mapeo de los environments
+- controller: en este folder se encuentran los diferentes controladores los cuales son llamados una vez se verifican los parámetros del endpoint.
+- middleware: en este folder encontrará los diferentes middleware que se encargan de interceptar las peticiones a un endpoint y realizar verificaciones.
+- models: en este folder se encuentran las clases de diferentes elementos las cuales tienen la funcionalidad de procesar la información que responde las apis externas y luego darles una estructura diferente.
+- routes: se encuentran los archivos de mapeo de las diferentes rutas existentes dentro del servicio
+- serve.js: archivo principal donde está la inicialización de la app.
